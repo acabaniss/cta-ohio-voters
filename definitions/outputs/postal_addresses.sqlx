@@ -7,3 +7,34 @@ config {
     assertions: {
     }
 }
+SELECT DISTINCT
+  residential_address_hash address_hash,
+  residential_address1 address1,
+  residential_city city,
+  residential_state state,
+  residential_zip zip,
+  congressional_district,
+  court_of_appeals,
+  edu_service_center_district,
+  precinct_name,
+  precinct_code,
+  state_representative_district,
+  state_senate_district,
+FROM
+  ${ref("int_voters_and_addresses")}
+UNION ALL BY NAME 
+SELECT DISTINCT
+  mailing_address_hash address_hash,
+  mailing_address1 address1,
+  mailing_city city,
+  mailing_state state,
+  mailing_zip zip,
+  CAST(NULL as string) congressional_district,
+  CAST(NULL as string)  court_of_appeals,
+  CAST(NULL as string)  edu_service_center_district,
+  CAST(NULL as string)  precinct_name,
+  CAST(NULL as string)  precinct_code,
+  CAST(NULL as int64)  state_representative_district,
+  CAST(NULL as int64)  state_senate_district,
+FROM
+  ${ref("int_voters_and_addresses")}
