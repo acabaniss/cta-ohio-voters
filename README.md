@@ -4,7 +4,7 @@ Hey there, team!
 
 I've been working on a prototype data ingestion pipeline for Ohio voter registration data. This models an approach for us to use to ingest CSV data from web sources into BigQuery in a standardized, reliable way.
 
-Because this is a prototype, I've favored going for breadth rather than depth in many places. You'll find a lot of TODOs, notes for consideration, and the like that address what this would like to increase the depth of the implementation.
+Because this is a prototype, I've favored going for breadth rather than depth in many places. You'll find a lot of TODOs, notes for consideration, and the like that address what this would look like to increase the depth of the implementation.
 
 To navigate this repo, I've added a few guides below; one for the Docs, and one for the major folders that contain the code artifacts.
 
