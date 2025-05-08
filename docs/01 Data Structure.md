@@ -31,6 +31,12 @@ PARTY_ENUM {
 }
 ```
 
+# Optimizations
+Although unimplemented in Dataform, optimizations for this data schema should include:
+- partitioning the voters dataset by residential address
+- clustering voting records by election name
+- potentially additional clusterings of postal address if there are particular partitions that are frequently used (precincts?)
+
 # Considerations and extensions
 
 - I've only included some key fields here in the schema; please see the Dataform file and resulting BigQuery tables for a more complete list of fields
