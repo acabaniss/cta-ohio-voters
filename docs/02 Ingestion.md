@@ -7,9 +7,9 @@ architecture-beta
 group ingest[Ingestion]
 
 service website(internet)[Ohio SOS website] in ingest
-service cf1(cloud)[Function] in ingest
-service scheduler1(cloud)[Scheduler] in ingest
-service csb(disk)[Storage Bucket]
+service cf1(cloud)[Cloud Function] in ingest
+service scheduler1(cloud)[Cloud Scheduler] in ingest
+service csb(disk)[Cloud Storage Bucket]
 
 website:R -- L:cf1
 cf1:B <-- T:scheduler1
@@ -17,11 +17,11 @@ cf1:R -- L:csb
 
 group process[Processing]
 
-service workflow(cloud)[Workflow] in process
+service workflow(cloud)[Cloud Workflow] in process
 service cloudrun(cloud)[Cloud Run Job] in process
 service bigquery(disk)[BigQuery] in process
 service dataform(cloud)[Dataform] in process
-service scheduler2(cloud)[Scheduler] in process
+service scheduler2(cloud)[Cloud Scheduler] in process
 
 
 csb:R --> L:workflow
@@ -55,6 +55,7 @@ Data is ingested and processed via three sets of services:
   - This component will use dlt to minimize custom logic that has to be written.
 - a Dataform workflow run, triggered by a Cloud Scheduler job.
   - This workflow handles tranformation of the data into usable datasets that meet the requirements of the [PRD](00 PRD.md) and the [Data Structure](01 Data Structure.md).
+  - If desired, this can be triggered by the same EventArc workflow upon successful completion of the Cloud Run job, so that data is only processed when new data appears.
 
 The pipeline has two data stores:
 
