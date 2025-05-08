@@ -15,8 +15,8 @@ This project aims to bring voter registration data into a controlled BigQuery en
 # Competence Questions
 
 - How many people have 408 Wilson Avenue, Kent, OH as their residential address?
-- Who has a residential address registered inside precinct code [PICK A Precinct Code]?
-- How many registered republicans voted democrat in the 2024-11-05 general election?
+- Who has a residential address registered inside precinct code 01AAA?
+- How many registered Republicans voted Democrat in the 2024-11-05 general election?
 - Who has registered to vote within the past 90 days?
 
 # Project Milestones
@@ -28,3 +28,4 @@ This project aims to bring voter registration data into a controlled BigQuery en
   - Dataform project
   - Cloud Run Job
   - Cloud Workflow
+  - Cloud Function (if time)
