@@ -9,8 +9,3 @@ dlthub_telemetry = true
 bucket_url="gs://cta-voter-files-raw/ohio/"
 file_glob="*.txt"
 
-[destination.bigquery]
-dataset_name = "cta_voter_files"
-table_name = "ohio_voter_data"
-
-

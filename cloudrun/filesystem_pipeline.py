@@ -27,6 +27,8 @@ def read_csv_with_duckdb() -> None:
             filesystem_pipe,
             write_disposition={"disposition": "merge", "strategy": "upsert"},
             primary_key="SOS_VOTERID",
+            dataset_name="cta_voter_files",
+            table_name="ohio_voter_data",
         )
 
         print(f"Load info: {load_info}")
