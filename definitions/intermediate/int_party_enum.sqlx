@@ -1,0 +1,44 @@
+config {
+    type: "table",
+    schema: "intermediate",
+    description: "Party codes.",
+    columns: {
+        "id": "1 letter id code for the party",
+        "name": "Party name."
+    },
+    assertions: {
+        uniqueKey: ["id"]
+    }
+}
+
+SELECT
+  "C" AS id,
+  "Constitution Party" AS name
+UNION ALL
+SELECT
+  "D",
+  "Democrat Party"
+UNION ALL
+SELECT
+  "E",
+  "Reform Party"
+UNION ALL
+SELECT
+  "G",
+  "Green Party"
+UNION ALL
+SELECT
+  "L",
+  "Libertarian Party"
+UNION ALL
+SELECT
+  "N",
+  "Natural Law Party"
+UNION ALL
+SELECT
+  "R",
+  "Republican Party"
+UNION ALL
+SELECT
+  "S",
+  "Socialist Party"
