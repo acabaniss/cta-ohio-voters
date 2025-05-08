@@ -59,8 +59,11 @@ Data is ingested and processed via three sets of services:
 
 The pipeline has two data stores:
 
-- a Storage Bucket, used for storing the raw files as downloaded from the Ohio SOS website, and
+- a Storage Bucket, used for storing the raw files as downloaded from the Ohio SOS website.
+  - Data access can be controlled at the bucket level to engineers involved in maintaining the pipeline.
 - a BigQuery project, used for storing the minimally transformed data to power the dataform pipeline.
+  - Data access can be controlled via BigQuery IAM to the project, individual tables, or even individual rows and columns with RBAC and column tagging.
+  - If desired, output datasets can be shared via Analytics Hub to other projects to make them more reusable.
 
 ## Behavior
 
