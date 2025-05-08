@@ -1,0 +1,38 @@
+config {
+    type: "table",
+    schema: "outputs",
+    description: "",
+    columns: {
+              "sos_voterid": "The Secretary of State centralized system's generated unique number, assigned to each voter registration record.",
+        "county_number": "Number that identifies each of Ohio's 88 Counties (01-88).",
+        "county_id": "County's system generated, unique number assigned to each voter registration record.",
+        "last_name": "Voter's last name.",
+        "first_name": "Voter's first name.",
+        "middle_name": "Voter's middle name.",
+        "suffix": "Voter's name suffix.",
+        "date_of_birth": "Voter's Date of Birth in YYYY-MM-DD format.",
+        "registration_date": "Date voter registered in YYYY-MM-DD format.",
+        "voter_status": "Shows current Voter Status",
+        "party_affiliation": "The voter's party affiliation as recorded from their last Primary Election history.",
+        "residential_address_hash": "Matches an address in postal_addresses",
+        "mailing_address_hash": "If not null, matches an address in postal addresses"
+    },
+    assertions: {
+      nonNull: ["residential_address_hash"],
+      uniqueKey: ["sos_voterid","county_voterid"]
+    }
+}
+select
+sos_voterid,
+  county_voterid,
+  last_name,
+  first_name,
+  middle_name,
+  suffix,
+  date_of_birth,
+  registration_date,
+  voter_status,
+  party_affiliation,
+  residential_address_hash,
+  mailing_address_hash
+from ${ref("int_voters_and_addresses")}

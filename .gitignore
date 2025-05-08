@@ -173,5 +173,8 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 
+# Dataform
+node_modules/
+
 # Custom
 data/

@@ -1,0 +1,10 @@
+config {
+    type: "table",
+    schema: "outputs",
+    description: "",
+    columns: {
+    },
+    assertions: {
+    }
+}
+select * from ${ref("int_party_enum")}

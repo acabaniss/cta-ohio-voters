@@ -1,0 +1,66 @@
+config {
+    type: "view",
+    schema: "sources",
+    description: "The Ohio voter registry file.",
+    tags: ["sources"],
+    columns: {
+        "sos_voterid": "The Secretary of State centralized system's generated unique number, assigned to each voter registration record.",
+        "county_number": "Number that identifies each of Ohio's 88 Counties (01-88).",
+        "county_id": "County's system generated, unique number assigned to each voter registration record.",
+        "last_name": "Voter's last name.",
+        "first_name": "Voter's first name.",
+        "middle_name": "Voter's middle name.",
+        "suffix": "Voter's name suffix.",
+        "date_of_birth": "Voter's Date of Birth in YYYY-MM-DD format.",
+        "registration_date": "Date voter registered in YYYY-MM-DD format.",
+        "voter_status": "Shows current Voter Status",
+        "party_affiliation": "The voter's party affiliation as recorded from their last Primary Election history. Values are: C - Constitution Party D - Democrat Party E - Reform Party G - Green Party L - Libertarian Party N - Natural Law Party R - Republican Party S - Socialist Party",
+        "residential_address1": "Voter's street address.",
+        "residential_city": "",
+        "residential_state": "",
+        "residential_zip": "",
+        "residential_zip_plus4": "",
+        "residential_country": "",
+        "residential_postal_code": "",
+        "mailing_address1": "Voter's mailing address.",
+        "mailing_city": "",
+        "mailing_state": "",
+        "mailing_zip": "",
+        "mailing_zip_plus4": "",
+        "mailing_country": "",
+        "mailing_postal_code": "",
+        "career_center": "Name of Career Center",
+        "city": "Name of  City",
+        "city_school_district": "Name of  City School District",
+        "county_court_district": "Name of  County Court",
+        "congressional_district": "Congressional District identifier",
+        "court_of_appeals": "Court of Appeals identifier",
+        "edu_service_center_district": "",
+        "exempted_vill_school_district": "",
+        "library_district": "Name of Library District",
+        "local_school_district": "Name of  Local School District",
+        "municipal_court_district": "Name of  Municipal Court District",
+        "precinct_name": "Name of Precinct",
+        "precinct_code": "Code assigned to the Precinct",
+        "state_board_of_education": "State Board of Education identifier",
+        "state_representative_district": "House District identifier",
+        "state_senate_district": "State Senate District identifier",
+        "township": "Name of Township",
+        "village": "Name of Village",
+        "ward": "Name of Ward",
+        "_dlt_load_id": "",
+        "_dlt_id": "",
+        "residential_secondary_addr": "",
+        "mailing_secondary_address": "",
+    },
+    assertions: {
+        uniqueKeys: [["sos_voterid"],["county_number","county_id"]]
+    }
+}
+with deduplicate as (
+SELECT
+* , ROW_NUMBER() OVER (PARTITION BY _dlt_id) rown
+from
+${ref("ohio_voter_data")}
+)
+select * from deduplicate where rown = 1

@@ -1,0 +1,1 @@
+gcloud run jobs execute storage-to-bq --region us-central1 --service-account=cloudrun-job-to-bigquery@ahfc-data-tutorials.iam.gserviceaccount.com

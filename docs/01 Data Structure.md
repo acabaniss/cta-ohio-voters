@@ -1,4 +1,4 @@
-# Data structure
+# Normalized data structure
 
 ```mermaid
 erDiagram

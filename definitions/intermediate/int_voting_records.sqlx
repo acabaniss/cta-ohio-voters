@@ -1,0 +1,65 @@
+config {
+    type: "table",
+    schema: "intermediate",
+    description: "",
+    columns: {
+        "sos_voterid":"SOS Voter ID",
+        "voting_record": "Whether the person voted in that election. If so, matches a value in voting_record_enum.",
+        "election_name": "Election identifier."
+    },
+    assertions: {
+        uniqueKeys: [["sos_voterid","election_name"]]
+    }
+}
+
+SELECT
+  sos_voterid,
+  voting_record,
+  election_name
+FROM
+  ${ref("ohio_voter_data_view")}
+-- TODO: pull these dynamically from information_schema via a JS function
+UNPIVOT
+  (voting_record FOR election_name IN ( general_11_02_2004,
+      general_11_08_2005,
+      general_11_07_2006,
+      primary_03_04_2008,
+      general_11_04_2008,
+      general_11_03_2009,
+      general_11_06_2012,
+      general_11_03_2015,
+      general_11_08_2016,
+      general_11_07_2017,
+      general_11_06_2018,
+      general_11_03_2020,
+      general_11_08_2022,
+      special_08_08_2023,
+      general_11_07_2023,
+      general_11_05_2024,
+      primary_03_07_2000,
+      general_11_07_2000,
+      general_11_06_2001,
+      general_11_05_2002,
+      general_11_04_2003,
+      primary_03_02_2004,
+      general_11_06_2007,
+      general_11_02_2010,
+      primary_03_06_2012,
+      general_11_04_2014,
+      primary_03_15_2016,
+      primary_05_08_2018,
+      primary_03_17_2020,
+      primary_05_03_2022,
+      primary_08_02_2022,
+      primary_03_19_2024,
+      general_11_08_2011,
+      primary_05_04_2010,
+      primary_05_03_2011,
+      general_11_05_2013,
+      general_11_02_2021,
+      primary_05_07_2002,
+      primary_05_02_2006,
+      primary_05_06_2014,
+      general_11_05_2019,
+      primary_05_03_2005))
+
