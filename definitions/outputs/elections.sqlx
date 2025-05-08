@@ -7,3 +7,14 @@ config {
     assertions: {
     }
 }
+with elections as (
+select DISTINCT
+election_name
+from
+${ref("int_voting_records")}
+)
+select
+election_name name,
+REGEXP_EXTRACT(election_name, r'^[^_]+') `type`,
+PARSE_DATE("%m_%d_%Y" ,RIGHT(election_name,10)) `date`
+from elections
