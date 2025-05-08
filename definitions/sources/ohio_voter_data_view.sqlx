@@ -57,7 +57,10 @@ config {
         uniqueKeys: [["sos_voterid"],["county_number","county_id"]]
     }
 }
+with deduplicate as (
 SELECT
-* 
+* , ROW_NUMBER() OVER (PARTITION BY _dlt_id) rown
 from
 ${ref("ohio_voter_data")}
+)
+select * from deduplicate where rown = 1
