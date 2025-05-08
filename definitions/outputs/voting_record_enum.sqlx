@@ -7,3 +7,8 @@ config {
     assertions: {
     }
 }
+select * from ${ref("int_party_enum")}
+UNION ALL SELECT
+"X","Voted without declaring party affiliation"
+UNION ALL SELECT
+null, "Indicates that there is no voting record for this voter for this election"

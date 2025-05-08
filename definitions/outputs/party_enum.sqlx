@@ -7,3 +7,4 @@ config {
     assertions: {
     }
 }
+select * from ${ref("int_party_enum")}
